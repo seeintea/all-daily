@@ -1,0 +1,48 @@
+/* CSS样式设置 */
+
+/* 样式重置 */
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin: 0;padding: 0; }
+h1, h2, h3, h4, h5, h6, button, input, select, textarea { font-size: 100%; }
+ul, ol , li { list-style: none; }
+a, a:hover { text-decoration: none; }
+button { cursor: pointer; }
+input { outline: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+img { border: 0; display: inline-block; height: auto; vertical-align: middle; }
+
+
+/* 常用字体 */
+.c-f12 { font-size: 12px; }
+.c-f14 { font-size: 14px; }
+.c-f16 { font-size: 16px; }
+.c-f18 { font-size: 18px; }
+.c-f20 { font-size: 20px; }
+.c-f22 { font-size: 22px; }
+.c-f24 { font-size: 24px; }
+.c-f12b { font-size: 12px; font-weight: bold; }
+.c-f14b { font-size: 14px; font-weight: bold; }
+.c-f16b { font-size: 16px; font-weight: bold; }
+.c-f18b { font-size: 18px; font-weight: bold; }
+.c-f20b { font-size: 20px; font-weight: bold; }
+.c-f22b { font-size: 22px; font-weight: bold; }
+.c-f24b { font-size: 24px; font-weight: bold; }
+
+/* 常用浮动效果 */
+.c-fl { float: left; }
+.c-fr { float: right; }
+.c-fc { clear: both; }
+.c-pr { position: relative; }
+.c-pa { position: absolute; }
+.c-pf { position: fixed; }
+
+/* 对齐方式 */
+.c-tl { text-align: left; }
+.c-tc { text-align: center; }
+.c-tr { text-align: right; }
+
+/* 字体颜色 - 黑 */
+.c-b0 { color: #000; }
+.c-b3 { color: #333; }
+.c-b6 { color: #666; }
+.c-b9 { color: #999; }
