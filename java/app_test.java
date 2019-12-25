@@ -15,6 +15,7 @@ public class app_test {
         if(scanner.hasNext()){
             str = scanner.next();
         }
+        scanner.close();
         return str;
     }
 
