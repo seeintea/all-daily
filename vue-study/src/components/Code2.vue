@@ -21,14 +21,15 @@
             <tr v-for="item in dataSearch(asearch)" :key="item.id">
                 <td>{{item.id}}</td>
                 <td v-text="item.name"></td>
-                <td>{{item.ctime}}</td>
-                <td><a href="" @click.prevent="del(item.id)">删除</a></td>
+                <td>{{item.ctime | dataFormat("yyyy-mm-dd")}}</td>
+                <td><a href="" @click.prevent="del(item.id)">{{'删除' | delFormat}}</a></td>
             </tr>
         </table>
     </div>
 </template>
 
 <script>
+
 export default {
     name: 'Code2',
     data: function() {
@@ -79,6 +80,12 @@ export default {
             return newList;
         },
     },
+    filters: {
+        //  局部过滤器 与 全局冲突时 优先使用 局部过滤器
+        delFormat: function(data){
+            return data+' self test';
+        }
+    }
 }
 </script>
 
