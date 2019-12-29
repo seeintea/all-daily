@@ -4,8 +4,7 @@ import Home from '../App.vue';
 
 Vue.use(VueRouter);
 
-const routes = [
-    {
+const routes = [{
         path: '/',
         name: 'home',
         component: Home,
@@ -13,12 +12,20 @@ const routes = [
     {
         path: '/1',
         name: 'Code2',
-        component: () => import('../components/Code2.vue')
+        component: () =>
+            import ('../components/Code2.vue')
+    },
+    {
+        path: '/2',
+        name: 'Code3',
+        component: () =>
+            import ('../components/Code3.vue')
     },
     {
         path: '/test',
         name: 'VueTest',
-        component: () => import('@/components/Test.vue')
+        component: () =>
+            import ('@/components/Test.vue')
     }
 ]
 
@@ -27,4 +34,3 @@ const router = new VueRouter({
 });
 
 export default router;
-
