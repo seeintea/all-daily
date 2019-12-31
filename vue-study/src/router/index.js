@@ -28,6 +28,12 @@ const routes = [{
             import ('../components/Code4.vue')
     },
     {
+        path: '/4',
+        name: 'Code5',
+        component: () =>
+            import ('../components/Code5.vue')
+    },
+    {
         path: '/test',
         name: 'VueTest',
         component: () =>

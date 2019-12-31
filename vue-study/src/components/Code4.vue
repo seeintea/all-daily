@@ -23,11 +23,16 @@
 
 <script>
 import axios from 'axios'
+
+// 配置 baseURL  
+axios.defaults.baseURL = 'http://www.znp.ink:3000';
+
 export default {
     name: 'Code4',
     data: function() {
         return {
             list: [],
+
         }
     },
     methods: {
@@ -40,7 +45,7 @@ export default {
             this.list.splice(index, 1);
         },
         getInfo() {
-            axios.get('http://www.znp.ink:3000/toplist/artist')
+            axios.get('/toplist/artist')
             .then(result => {
                 let obj = result.data.list.artists;
                 let l;
