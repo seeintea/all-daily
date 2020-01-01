@@ -9,6 +9,17 @@
         <transition name="own">
             <h3 v-if="flag1">这是一个H4</h3>
         </transition>
+        <hr />
+        <!-- 使用钩子函数 模拟小球 半场动画 -->
+        <input type="button" value="# 3 To Do." @click="flag2 = !flag2">
+        <transition name="bs"
+            @before-enter = "beforeEnter"
+            @enter = "enter"
+            @after-enter = "afterEnter"
+        >
+            <div v-show="flag2" class="ball"></div>
+        </transition>
+
     </div>
 </template>
 
@@ -19,11 +30,32 @@ export default {
         return {
             flag: true,
             flag1: true,
+            flag2: false,
         }
     },
     methods: {
         toggle() {
             this.flag = !this.flag;
+        },
+        // 动画钩子函数的第一个参数 表示要执行的DOM元素 原生的JS DOM 对象
+        // document.getElenmetById('')
+        beforeEnter(el) {
+            //console.log(el);
+            //动画开始之前的起始位置
+            el.style.transform = 'translate(0,0)';
+        },
+        enter(el, done) {
+            //console.log(el);
+            //开始动画
+            el.offsetWidth;   //强制页面刷新
+            el.style.transform = 'translate(150px, 150px)';
+            el.style.transition = 'all 3s ease';
+            // 过渡哦完成立即执行 afterEnter()
+            done();
+        },
+        afterEnter(el) {
+            console.log(el);
+            this.flag2 = !this.flag2;
         }
     }
 }
@@ -55,4 +87,12 @@ export default {
 .own-leave-active {
     transition: all 1s ease;
 }
+
+.ball {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #b20000;
+}
+
 </style>
