@@ -19,7 +19,7 @@
         >
             <div v-show="flag2" class="ball"></div>
         </transition>
-
+        <!-- stop update 20200102 -->
     </div>
 </template>
 
