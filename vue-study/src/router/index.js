@@ -40,6 +40,24 @@ const routes = [{
             import ('../components/Code6.vue')
     },
     {
+        path: '/7',
+        name: 'Code7',
+        component: () =>
+            import ('../components/Code7.vue')
+    },
+    {
+        path: '/8',
+        name: 'Code8',
+        component: () =>
+            import ('../components/Code8.vue')
+    },
+    {
+        path: '/9',
+        name: 'Code9',
+        component: () =>
+            import ('../components/Code9.vue')
+    },
+    {
         path: '/test',
         name: 'VueTest',
         component: () =>

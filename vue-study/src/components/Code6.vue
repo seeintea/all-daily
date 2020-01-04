@@ -9,7 +9,7 @@
             <!-- 列表过度 v-for 循环 不能使用 transition 包裹 -->
             <!-- appear 实现入场效果 -->
             <!-- tag 设置transition为指定元素 默认为span标签 -->
-            <transition-group appear tag='ul'>
+            <transition-group mode="out-in" appear tag='ul'>
                 <li v-for="(item,i) in list" :key='item.id' @click="del(i)">
                     {{item.id}} --- {{ item.name }}
                 </li>
@@ -21,7 +21,7 @@
 <script>
 export default {
     name: 'Code6',
-    // data 定义成方法目的 调用相同组件的不共享一个data对象
+    //data 定义成方法目的 调用相同组件的不共享一个data对象
     data: () => {
         return {
             id: '',
