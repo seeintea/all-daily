@@ -4,6 +4,8 @@
         <h3 id="myh3" ref="myRef">Text test ... </h3>
         <hr />
         <comp1 ref="myComp1"></comp1>
+        <router-view></router-view>
+        <router-link to="/11/test1">Test Component !</router-link>
     </div>
 </template>
 
@@ -27,7 +29,11 @@ export default {
     },
     components: {
         Comp1
-    }
+    },
+    created() {
+        console.log(this.$route);
+        console.log(this.$route.query.id)
+    },
 }
 </script>
 

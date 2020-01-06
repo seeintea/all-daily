@@ -1,14 +1,20 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../App.vue';
+// import Home from '../App.vue';
 
 Vue.use(VueRouter);
 
-const routes = [{
-        path: '/',
-        name: 'home',
-        component: Home,
-    },
+const routes = [
+    // {
+    //     path: '/',
+    //     name: 'home',
+    //     component: Home,
+    // },
+    // {
+    //     // 重定向
+    //     path: '/',
+    //     redirect: '/10'
+    // },
     {
         path: '/1',
         name: 'Code2',
@@ -58,7 +64,7 @@ const routes = [{
             import ('../components/Code9.vue')
     },
     {
-        path: '/10',
+        path: '/10/:id',
         name: 'Code10',
         component: () =>
             import ('../components/Code10.vue')
@@ -66,6 +72,12 @@ const routes = [{
     {
         path: '/11',
         name: 'Code11',
+        children: [{
+            path: 'test1',
+            name: 'Test1',
+            component: () =>
+                import ('@/components/Test.vue')
+        }],
         component: () =>
             import ('../components/Code11.vue')
     },

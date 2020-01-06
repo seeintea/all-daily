@@ -25,6 +25,9 @@ export default {
     },
     created() {
         this.loadCmments();
+        console.log(this.$route);
+        
+        
     },
     methods: {
         loadCmments() {
