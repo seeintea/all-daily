@@ -29,6 +29,14 @@
 export default {
   name: 'app',
   components: {
+  },
+  watch: {
+      // 监视路由
+      // $route(to, from) {
+      //     console.log(to.name);
+      //     console.log("------"); 
+      //     console.log(from);
+      // }
   }
 }
 

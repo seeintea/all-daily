@@ -82,6 +82,12 @@ const routes = [
             import ('../components/Code11.vue')
     },
     {
+        path: '/12',
+        name: 'Code12',
+        component: () =>
+            import ('../components/Code12.vue')
+    },
+    {
         path: '/test',
         name: 'VueTest',
         component: () =>
