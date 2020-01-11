@@ -39,6 +39,20 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.(jpg|png|gif|bmp|jpeg)$/,
+                use: 'url-loader' // use: 'url-loader？limit=XXXX&name=[name].[ext] 控制图片大小且图片名不变
+            },
+            {
+                test: /\.(ttf|eot|svg|woff|woff2)$/,
+                use: 'url-loader'
+            },
+            // babel 配置
+            {
+                test: /\.js$/,
+                use: 'babel-loader',
+                exclude: /node_modules/
             }
         ]
     }
