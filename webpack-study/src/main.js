@@ -38,3 +38,6 @@ console.log(Person.info);
 // webpack 中 通过 babel 将高级语法转换为低级语法
 // npm i babel-core babel-loader babel-plugin-transform-runtime -D
 // npm i babel-preset-env babel-preset-stage-0 -D
+// babel-loader 8.0 全新配置
+// npm i babel-loader @babel/core @babel/runtime @babel/preset-env @babel/plugin-proposal-class-properties @babel/plugin-transform-runtime -D
+// 配置文件 见  .babelrc
