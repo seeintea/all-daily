@@ -4,22 +4,36 @@
 // import Vue from '../node_modules/vue/dist/vue.js';
 import Vue from 'vue'; // 需要在 webpack.config.js 中额外配置
 
-import login from '../src/login.vue';
+// import login from '../src/login.vue';
 
-import m1, { obj, obj1 as t1 } from './test.js';
+// import m1, { obj, obj1 as t1 } from './test.js';
 
-console.log(m1);
-console.log(obj);
-console.log('1', t1);
+// console.log(m1);
+// console.log(obj);
+// console.log('1', t1);
 
+import app from './app.vue';
 
+// 引入 Vue-router 路由
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    routes: [{
+        path: '/1',
+        component: () =>
+            import ('./login.vue')
+    }]
+})
 
 let vm = new Vue({
     el: '#app',
     data: {
         msg: '123',
     },
-    render: createElement => {
-        return createElement(login)
-    }
+    // render: createElement => {
+    //     return createElement(login)
+    // }
+    render: m => m(app),
+    router
 })
