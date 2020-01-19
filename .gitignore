@@ -24,3 +24,5 @@ yarn-error.log*
 *.sln
 *.sw?
 *jpg
+
+dome/vue-music/src/common
