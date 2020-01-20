@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-    hello word! 
+    <dif-header></dif-header>
+    <router-view></router-view>
+    <navigation></navigation>
   </div>
 </template>
 
 <script>
-
+import DifHeader from '@components/header/header'
+import Navigation from '@components/navigation/nav'
 export default {
   name: 'app',
+  components: {
+    DifHeader,
+    Navigation
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import './common/scss/variable';
-
-#app {
-  background: $color-theme;
-}
 
 </style>
