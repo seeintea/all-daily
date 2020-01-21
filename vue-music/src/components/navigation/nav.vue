@@ -1,16 +1,25 @@
 <template>
     <div>
-        <router-link tag='div' to='/concert'>音乐馆</router-link>
         <router-link tag='div' to='/find'>发现</router-link>
         <router-link tag='div' to='/comment'>热评</router-link>
         <router-link tag='div' to='/mine'>我的</router-link>
-        <i class="iconfont icon-concert-click"></i>
+        <nav-item :classChoice="msg"></nav-item>
     </div>
 </template>
 
 <script>
+import navItem from './navItem'
+
 export default {
-    name: 'difNav'
+    name: 'difNav',
+    data(){
+        return {
+            msg: 'icon-find',
+        }
+    },
+    components: {
+        navItem
+    }
 }
 </script>
 
