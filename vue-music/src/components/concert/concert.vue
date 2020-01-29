@@ -6,15 +6,23 @@
 
 <script>
 
+import { getBannerAdr } from '@api/concert.js'
+
 export default {
     name: 'concert',
-    created() {
-        this.add();    
+    data: ()=>{
+        return {
+            bannerList: [],
+        }
     },
     methods: {
-        add(){
-            console.log("!")
-        },
-    }
+        _getBannerAdr() {
+            let data = getBannerAdr();
+            console.log(data)
+        }
+    },
+    created() {
+        this._getBannerAdr();
+    },
 }
 </script>
