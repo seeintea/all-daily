@@ -1,28 +1,35 @@
 <template>
     <div>
         音乐馆
+        <concert-button></concert-button>
     </div>
 </template>
 
 <script>
 
-import { getBannerAdr } from '@api/concert.js'
+import { getBanner } from '@api/concert.js'
+import concertButton from './button/concertButton'
 
 export default {
     name: 'concert',
     data: ()=>{
         return {
-            bannerList: [],
-        }
-    },
-    methods: {
-        _getBannerAdr() {
-            let data = getBannerAdr();
-            console.log(data)
+            banners: [],
         }
     },
     created() {
-        this._getBannerAdr();
+        this._getBanner();
     },
+    methods: {
+        _getBanner() {
+            getBanner().then(res=>{
+                this.banners = res.data.banners;
+            })
+        }
+    },
+    components: {
+        concertButton
+    }
+
 }
 </script>
