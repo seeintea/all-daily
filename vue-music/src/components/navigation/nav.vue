@@ -11,9 +11,6 @@ export default {
     name: 'difNav',
     data(){
         return {
-            msg: 'icon-find',
-            msg1: '',
-            msg2: '!2345',
             items: [
                 {id: 1, class: 'icon-concert', add: '/concert', msg: '音乐馆'},
                 {id: 2, class: 'icon-find', add: '/find', msg: '发现'},
