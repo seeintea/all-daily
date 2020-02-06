@@ -10,6 +10,7 @@
 <script>
 
 import { addClass } from '@/utils/dom';
+import BScroll from 'better-scroll';
 
 export default {
     props: {
@@ -28,7 +29,8 @@ export default {
     },
     mounted() {
         setTimeout(()=>{
-            this._setSliderWidth();
+			this._setSliderWidth();
+			this._initSlider();
         }, 20)
     },
     methods: {
@@ -47,6 +49,21 @@ export default {
                 width += 2*sliderWidth;
             }
             this.$refs.sliderGroup.style.width = width + 'px ';
+        },
+        _initSlider () {
+          this.slider = new BScroll(this.$refs.slider, {
+            scrollX: true,
+            momentum: false,
+            snap: {
+              loop: this.loop,
+              threshold: 0.3,
+              speed: 400
+            },
+            snapSpeed: 400,
+            bounce: false,
+            stopPropagation: true,
+            click: true
+          })
         }
     }
 }

@@ -43,3 +43,9 @@ export default {
 
 }
 </script>
+
+<style lang="scss" scoped>
+.slider-warp {
+    overflow: hidden;
+}
+</style>
