@@ -3,7 +3,9 @@
         <div class="slider-group" ref="sliderGroup">
             <slot></slot>
         </div>
-        <div class="dots"></div>
+        <div class="dots">
+			<span class="dot" v-for="(item,index) in dots" :key="index" :class="{active: currentPageindex === index}"></span>
+		</div>
     </div>
 </template>
 
@@ -13,6 +15,12 @@ import { addClass } from '@/utils/dom';
 import BScroll from 'better-scroll';
 
 export default {
+	data: ()=> {
+		return {
+			dots: [],
+			currentPageindex: 0
+		}
+	},
     props: {
         loop: {
             type: Boolean,
@@ -29,12 +37,23 @@ export default {
     },
     mounted() {
         setTimeout(()=>{
-			this._setSliderWidth();
+			this._setSliderWidth(false);
+			this._initDots();
 			this._initSlider();
-        }, 20)
+			if(this.autoPlay) {
+				this._play();
+			}
+		}, 20)
+		
+		window.addEventListener("resize", ()=>{
+			if(!this.slider){
+				return
+			} 
+			this._setSliderWidth(true);
+		})
     },
     methods: {
-        _setSliderWidth() {
+        _setSliderWidth(isResize) {
             this.children = this.$refs.sliderGroup.children;
             let width = 0;
             let sliderWidth = this.$refs.slider.clientWidth;
@@ -43,28 +62,49 @@ export default {
                 addClass(child, 'slider-item');
                 child.style.width = sliderWidth + 'px';
                 width += sliderWidth; 
-                
             } 
-            if(this.loop){
+            if(this.loop && !isResize){
                 width += 2*sliderWidth;
             }
             this.$refs.sliderGroup.style.width = width + 'px ';
-        },
+		},
+		
+        _initDots() {
+			this.dots = new Array(this.children.length);
+		},
+		
         _initSlider () {
-          this.slider = new BScroll(this.$refs.slider, {
-            scrollX: true,
-            momentum: false,
-            snap: {
-              loop: this.loop,
-              threshold: 0.3,
-              speed: 400
-            },
-            snapSpeed: 400,
-            bounce: false,
-            stopPropagation: true,
-            click: true
-          })
-        }
+			this.slider = new BScroll(this.$refs.slider, {
+				scrollX: true,
+				scrollY: true,
+				momentum: false,
+				snap: {
+					loop: this.loop,
+					threshold: 0.3,
+					speed: 400
+				},
+				snapSpeed: 400,
+				bounce: false,
+				stopPropagation: true,
+				click: true
+			})
+
+			this.slider.on("scrollEnd", ()=> {
+				let pageIndex = this.slider.getCurrentPage().pageX;
+				this.currentPageindex = pageIndex;
+				if(this.autoPlay){
+					clearTimeout(this.timer);
+					this._play();
+				}
+			})
+		},
+		
+		_play() {
+			this.timer = setTimeout(() => {
+				this.slider.next();
+			}, this.interval);
+
+		}
     }
 }
 </script>
@@ -105,7 +145,7 @@ export default {
       background: $color-text-l;
       &.active {
         border-radius: 5px;
-        background: $color-highlight-background;
+        background: $color-theme;
       }
     }
   }
