@@ -4,3 +4,8 @@ import service from '@utils/http.js'
 export function getBanner() {
     return service.get('/banner')
 }
+
+// promise achieve hot disc
+export function getHotDisc() {
+    return service.get('/playlist/hot')
+}
