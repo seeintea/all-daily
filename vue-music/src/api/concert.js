@@ -7,5 +7,5 @@ export function getBanner() {
 
 // promise achieve hot disc
 export function getHotDisc() {
-    return service.get('/playlist/hot')
+    return service.get('/top/playlist?limit=10')
 }
