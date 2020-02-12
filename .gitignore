@@ -25,4 +25,6 @@ yarn-error.log*
 *.sw?
 *jpg
 
+*.class
+
 vue-music/src/common
