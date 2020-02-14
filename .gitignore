@@ -27,4 +27,6 @@ yarn-error.log*
 
 *.class
 
+shopping/views
+
 vue-music/src/common
