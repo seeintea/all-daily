@@ -22,8 +22,12 @@ func CheckUserName(username string) (bool, error) {
 	sqlStr := "select id from users where username = ?"
 	// 执行
 	idExist := false
+	id := -1
 	row := utils.Db.QueryRow(sqlStr, username)
-	err := row.Scan(&idExist)
+	err := row.Scan(&id)
+	if id > 0 {
+		idExist = true
+	}
 	return idExist, err
 }
 

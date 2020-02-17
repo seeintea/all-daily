@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"shopping/dao"
@@ -37,6 +38,21 @@ func Regist(w http.ResponseWriter, r *http.Request) {
 	} else {
 		// 用户名存在
 		t := template.Must(template.ParseFiles("views/pages/user/regist.html"))
-		t.Execute(w, "用户名已存在")
+		// t.Execute(w, "用户名已存在")
+		t.Execute(w, "")
+	}
+}
+
+// CheckUserName 检查用户名是否可以使用
+func CheckUserName(w http.ResponseWriter, r *http.Request) {
+	// 获取 username
+	username := r.PostFormValue("username")
+	fmt.Println(username)
+	user, _ := dao.CheckUserName(username)
+	fmt.Println(user)
+	if !user {
+		w.Write([]byte("用户名可用"))
+	} else {
+		w.Write([]byte("用户名已经存在"))
 	}
 }
