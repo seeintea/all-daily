@@ -6,10 +6,10 @@ import (
 )
 
 func TestUser(t *testing.T) {
-	fmt.Println("开始测试UserDao中的函数:")
+	//fmt.Println("开始测试UserDao中的函数:")
 	//t.Run("保存用户:", testRegist)
-	t.Run("验证用户:", testLogin)
-	t.Run("验证用户名:", testSave)
+	//t.Run("验证用户:", testLogin)
+	//t.Run("验证用户名:", testSave)
 }
 
 func testLogin(t *testing.T) {
