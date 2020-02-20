@@ -36,3 +36,30 @@ func DeleteBook(w http.ResponseWriter, r *http.Request) {
 	dao.DeleteBook(id)
 	GetBooks(w, r)
 }
+
+//ToUpdateBookPage 去更新图书页面
+func ToUpdateBookPage(w http.ResponseWriter, r *http.Request) {
+	bookID := r.FormValue("bookID")
+	book, _ := dao.GetBookByID(bookID)
+	t := template.Must(template.ParseFiles("views/pages/manager/book_modify.html"))
+	t.Execute(w, book)
+}
+
+//UpdateBookByID 根据ID更新图书
+func UpdateBookByID(w http.ResponseWriter, r *http.Request) {
+	book := &model.Book{}
+	id, _ := (strconv.ParseInt(r.PostFormValue("bookID"), 10, 0))
+	book.Title = r.PostFormValue("title")
+	book.Author = r.PostFormValue("author")
+	book.Price, _ = strconv.ParseFloat(r.PostFormValue("price"), 64)
+	sales, _ := (strconv.ParseInt(r.PostFormValue("sales"), 10, 0))
+	stock, _ := strconv.ParseInt(r.PostFormValue("stock"), 10, 0)
+	book.ID = int(id)
+	book.Sales = int(sales)
+	book.Stock = int(stock)
+	err := dao.UpdateBook(book)
+	if err != nil {
+		panic(err.Error())
+	}
+	GetBooks(w, r)
+}

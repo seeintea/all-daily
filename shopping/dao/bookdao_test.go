@@ -13,8 +13,10 @@ func TestMain(m *testing.M) {
 
 func TestBook(t *testing.T) {
 	//t.Run("获取所有图书:", testGetBooks)
-	t.Run("测试添加图书", testAddBook)
-	t.Run("测试删除图书", testDeleteBook)
+	//t.Run("测试添加图书", testAddBook)
+	//t.Run("测试删除图书", testDeleteBook)
+	//t.Run("测试ID获取图书", testGetBookByID)
+	t.Run("测试修改图书信息:", testUpdateBookByID)
 }
 
 func testGetBooks(t *testing.T) {
@@ -41,6 +43,21 @@ func testAddBook(t *testing.T) {
 
 func testDeleteBook(t *testing.T) {
 	err := DeleteBook("6")
+	if err != nil {
+		panic(err.Error())
+	}
+}
+
+func testGetBookByID(t *testing.T) {
+	book, _ := GetBookByID("1")
+	fmt.Println(book)
+}
+
+func testUpdateBookByID(t *testing.T) {
+	book, _ := GetBookByID("7")
+	book.Title = "测试数目2"
+	book.Author = "测试作者2"
+	err := UpdateBook(book)
 	if err != nil {
 		panic(err.Error())
 	}
