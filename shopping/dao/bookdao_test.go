@@ -16,7 +16,8 @@ func TestBook(t *testing.T) {
 	//t.Run("测试添加图书", testAddBook)
 	//t.Run("测试删除图书", testDeleteBook)
 	//t.Run("测试ID获取图书", testGetBookByID)
-	t.Run("测试修改图书信息:", testUpdateBookByID)
+	//t.Run("测试修改图书信息:", testUpdateBookByID)
+	t.Run("测试分页图书信息:", testGetPageBooks)
 }
 
 func testGetBooks(t *testing.T) {
@@ -61,4 +62,12 @@ func testUpdateBookByID(t *testing.T) {
 	if err != nil {
 		panic(err.Error())
 	}
+}
+
+func testGetPageBooks(t *testing.T) {
+	page, _ := GetPageBooks("1")
+	fmt.Println("获取图书:", page.Books)
+	fmt.Println("总页数:", page.TotalPageNo)
+	fmt.Println("当前页:", page.PageNo)
+	fmt.Println("总页数:", page.TotalPageNo)
 }
