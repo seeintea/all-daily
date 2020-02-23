@@ -63,3 +63,12 @@ func UpdateBookByID(w http.ResponseWriter, r *http.Request) {
 	}
 	GetBooks(w, r)
 }
+
+//GetPageBooks 获取带分页的图书
+func GetPageBooks(w http.ResponseWriter, r *http.Request) {
+	// 获取页码
+	pageNo := r.FormValue("pageNo")
+	page, _ := dao.GetPageBooks(pageNo)
+	t := template.Must(template.ParseFiles("views/pages/manager/book_manager.html"))
+	t.Execute(w, page)
+}

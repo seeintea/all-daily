@@ -30,5 +30,12 @@ func main() {
 	http.HandleFunc("/deleteBook", controller.DeleteBook)
 	http.HandleFunc("/toUpdateBookPage", controller.ToUpdateBookPage)
 	http.HandleFunc("/updateBook", controller.UpdateBookByID)
+	// 分页获取
+	http.HandleFunc("/getPageBooks", controller.GetPageBooks)
+
+	//测试
+	http.HandleFunc("/setTest", controller.SetCookieDome)
+	http.HandleFunc("/gettTest", controller.GetCookieDome)
+
 	http.ListenAndServe(":8080", nil)
 }
