@@ -25,14 +25,20 @@ func main() {
 	http.HandleFunc("/regist", controller.Regist)
 	// 通过 ajax 请求检测用户名是否可以使用
 	http.HandleFunc("/checkUserName", controller.CheckUserName)
+	// 获取所有图书
 	http.HandleFunc("/getBooks", controller.GetBooks)
+	// 新增图书
 	http.HandleFunc("/addBook", controller.AddBook)
+	// 删除图书
 	http.HandleFunc("/deleteBook", controller.DeleteBook)
+	// 更新分页
 	http.HandleFunc("/toUpdateBookPage", controller.ToUpdateBookPage)
+	// 更新图书
 	http.HandleFunc("/updateBook", controller.UpdateBookByID)
 	// 分页获取
 	http.HandleFunc("/getPageBooks", controller.GetPageBooks)
-
+	// 可修改可新增
+	http.HandleFunc("/bookModify", controller.BookModidy)
 	//测试
 	http.HandleFunc("/setTest", controller.SetCookieDome)
 	http.HandleFunc("/gettTest", controller.GetCookieDome)

@@ -72,3 +72,19 @@ func GetPageBooks(w http.ResponseWriter, r *http.Request) {
 	t := template.Must(template.ParseFiles("views/pages/manager/book_manager.html"))
 	t.Execute(w, page)
 }
+
+// BookModidy 添加图书或者修改图书
+func BookModidy(w http.ResponseWriter, r *http.Request) {
+	// 获取ID
+	bookID := r.FormValue("bookID")
+	id, _ := strconv.ParseInt(bookID, 10, 0)
+	if id > 0 {
+		// 去图书更新界面
+		book, _ := dao.GetBookByID(bookID)
+		t := template.Must(template.ParseFiles("views/pages/manager/book_modify.html"))
+		t.Execute(w, book)
+	} else {
+		// 去新增图书界面
+
+	}
+}
