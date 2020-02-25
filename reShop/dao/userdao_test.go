@@ -48,14 +48,14 @@ func testCheckUserName(t *testing.T) {
 func testCheckUserInfo(t *testing.T) {
 	u := "admin"
 	p := "123456"
-	result := CheckUserInfo(u, p)
+	result, _ := CheckUserInfo(u, p)
 	if result {
 		fmt.Println("test: 1.用户通过")
 	} else {
 		fmt.Println("test: 1.用户不通过")
 	}
 	p = "654321"
-	result = CheckUserInfo(u, p)
+	result, _ = CheckUserInfo(u, p)
 	if result {
 		fmt.Println("test: 2.用户通过")
 	} else {

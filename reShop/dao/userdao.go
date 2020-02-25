@@ -6,7 +6,7 @@ import (
 )
 
 // CheckUserInfo 核查用户信息，验证账号密码 - true 成功
-func CheckUserInfo(u string, p string) bool {
+func CheckUserInfo(u string, p string) (bool, *model.User) {
 	// SQL 语句
 	sqlStr := "select id, username, password, email from users where username = ? and password = ?"
 	// SQL 查询 Query() 返回一条信息
@@ -19,9 +19,9 @@ func CheckUserInfo(u string, p string) bool {
 	utils.ErrorFree(err)
 	// 判断是否为正常用户
 	if user.ID > 0 {
-		return true
+		return true, user
 	}
-	return false
+	return false, nil
 }
 
 // CheckUserName 检查用户名，放置重复注册 - true 无重复

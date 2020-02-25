@@ -41,5 +41,7 @@ func httpStaticMap() {
 
 // User处理器
 func userHandle() {
-	http.HandleFunc("/login", ShoppingLogin)
+	http.HandleFunc("/login", ShoppingLogin)   //登陆
+	http.HandleFunc("/regist", ShoppingRegist) //注册
+	http.HandleFunc("/rename", ShoppingReName) //核名
 }
