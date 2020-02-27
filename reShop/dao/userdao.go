@@ -42,9 +42,9 @@ func CheckUserName(u string) bool {
 func AddNewUser(u *model.User) bool {
 	sqlStr := "insert into users(username,password,email) values(?,?,?)"
 	// 执行 SQL 语句
-	_, err := utils.Db.Exec(sqlStr, &u.UserName, &u.PassWord, &u.Email)
-	if err != nil {
-		utils.ErrorHandle(err)
+	result, err := utils.Db.Exec(sqlStr, &u.UserName, &u.PassWord, &u.Email)
+	state := utils.SQLAffected(result, err)
+	if state > 0 {
 		return false
 	}
 	return true
