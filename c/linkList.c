@@ -6,6 +6,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 /*
  说明: 链表的头节点为空节点，不作为可操作节点使用
