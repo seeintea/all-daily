@@ -81,8 +81,8 @@ func InsertBook(b *model.Book) bool {
 // UpdateBook 更新图书 true-更新成功
 func UpdateBook(b *model.Book) bool {
 	// 暂时不考虑对 img_path 的更新
-	sqlStr := "update books set title = ?, author = ?, sales = ?, stock = ? where id = ?"
-	result, err := utils.Db.Exec(sqlStr, &b.Title, &b.Author, &b.Sales, &b.Stock, &b.ID)
+	sqlStr := "update books set title = ?, author = ?, price = ?, sales = ?, stock = ? where id = ?"
+	result, err := utils.Db.Exec(sqlStr, &b.Title, &b.Author, &b.Price, &b.Sales, &b.Stock, &b.ID)
 	state := utils.SQLAffected(result, err)
 	if state > 0 {
 		return true

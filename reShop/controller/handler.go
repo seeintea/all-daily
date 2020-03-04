@@ -14,7 +14,7 @@ func HTTPHandle() {
 	// User 处理器
 	userHandle()
 	// Manager 处理器
-
+	bookManagerHandle()
 	// Order 处理器
 
 	// Cart 处理器
@@ -41,7 +41,12 @@ func httpStaticMap() {
 
 // User处理器
 func userHandle() {
-	http.HandleFunc("/login", ShoppingLogin)   //登陆
-	http.HandleFunc("/regist", ShoppingRegist) //注册
-	http.HandleFunc("/rename", ShoppingReName) //核名
+	http.HandleFunc("/login", ShoppingLogin)   // 登陆
+	http.HandleFunc("/regist", ShoppingRegist) // 注册
+	http.HandleFunc("/rename", ShoppingReName) // 核名
+}
+
+// BookManager处理器
+func bookManagerHandle() {
+	http.HandleFunc("/getAllBooks", GetAllBooks) // 获取全部图书
 }
