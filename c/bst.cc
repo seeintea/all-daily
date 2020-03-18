@@ -17,6 +17,15 @@ struct Node {
     struct Node* rightChild;
 };
 
+// 先序遍历
+void preorder(const struct Node* node){
+    printf("%d\t", node->data);
+    if(node->leftChild)
+        preorder(node->leftChild);
+    if(node->rightChild)
+        preorder(node->rightChild);
+}
+
 struct Node* crateNode(var data) {
     struct Node* node = (struct Node*)malloc(sizeof(struct Node));
     node->data = data;
@@ -64,7 +73,7 @@ void insert(struct Node* node, var data){
 // 二叉搜索树查询 与插入类似
 // 仅给出递归版本
 // 返回值与查询值相同则suc，否则返回接近最大值
-var search(struct Node* node, var data){
+var search(const struct Node* node, var data){
     bool cp;
     var bup = node->data;
     if (bup == data) return bup;
@@ -84,23 +93,25 @@ var delete_node(struct Node &node, var data) {
     var bup = -1;
     // 判断是否为首节点
     if(node.data == data){
+        bup = node.data;
         struct Node* n_node = node.rightChild;
         struct Node* bup_node = n_node;
         while (n_node->leftChild) {
             n_node = n_node->leftChild;
         }
         n_node->leftChild = node.leftChild;
-        bup = data;
         node = *bup_node;
+        return  bup;
     }
+    
     // 确定删除节点所在位置
     // 备份BST
     struct Node* n_node = &node;
-    // 空节点作为临时节点 - 暂时无用
-    //struct Node* tep_node = nullptr;
+    struct Node* bup_node = n_node;
     bool cp = false, flag = true, state = true;
     // Tip: 删除此节点需要寻找被删除节点的父节点
     // 不使用 search 函数的原因: 使用额外的时间仅用来确定是否存在
+    // 需要进行分树操作
     while(state){
     	state = false;
     	// 确定节点的走向
@@ -108,7 +119,7 @@ var delete_node(struct Node &node, var data) {
         // 判断节点的值是否与所需要匹配的值相等
         // 短路求值
         if((n_node->leftChild && n_node->leftChild->data == data) || (n_node->rightChild && n_node->rightChild->data == data))
-        	flag = false;
+            flag = false;
         // 确定节点
         if(cp && flag && n_node->leftChild){
         	n_node = n_node->leftChild;
@@ -118,26 +129,39 @@ var delete_node(struct Node &node, var data) {
             state = true;
         }
     }
+    struct Node* next_node = nullptr;
     // 查看此时节点是否符合要求
-    if(cp && (n_node->leftChild && n_node->leftChild->data == data))
-    	state = true;
-    else if(!cp && (n_node->rightChild && n_node->rightChild->data == data))
-    	state = true;
-    // 删除节点
-    if(state){
-    	
+    if(cp && (n_node->leftChild && n_node->leftChild->data == data)){
+        next_node = n_node->leftChild;
+        state = true;
     }
+    else if(!cp && (n_node->rightChild && n_node->rightChild->data == data)){
+        next_node = n_node->rightChild;
+        state = true;
+    }
+    
+    // 删除节点
+    // 被删除节点恰好是叶节点
+    if(state && !next_node->leftChild && !next_node->rightChild){
+        bup = next_node->data;
+        cp ? n_node->leftChild = nullptr : n_node->rightChild = nullptr;
+        node = *bup_node;
+        return bup;
+    }
+    if(state){
+        struct Node* bit_tree = nullptr;
+        cp ? bit_tree = n_node->leftChild : bit_tree = n_node->rightChild ;
+        bup = bit_tree->data;
+        delete_node(*bit_tree ,bit_tree->data);
+        cp ? n_node->leftChild = bit_tree : n_node->rightChild = bit_tree;
+        node = *bup_node;
+        return bup;
+    }
+    // 待删除节点在右部
+    
     return bup;
 }
 
-// 先序遍历
-void preorder(const struct Node* node){
-    printf("%d\t", node->data);
-    if(node->leftChild)
-        preorder(node->leftChild);
-    if(node->rightChild)
-        preorder(node->rightChild);
-}
 
 int main() {
     
@@ -183,11 +207,9 @@ int main() {
     printf("查询值:%d, 查询结果: %d\n", 10, search(node, 10));
     printf("查询值:%d, 查询结果: %d\n", 21, search(node, 21));
     
-    //printf("%d\n",delete_node(*node, 10));
-    //preorder(node);
-    //printf("\n");
-    
-    printf("%d\n",delete_node(*node, 21));
+    printf("%d\n",delete_node(*node, 17));
+    preorder(node);
+    printf("\n");
     
     return 0;
 }
