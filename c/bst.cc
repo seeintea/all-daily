@@ -103,7 +103,6 @@ var delete_node(struct Node &node, var data) {
         node = *bup_node;
         return  bup;
     }
-    
     // 确定删除节点所在位置
     // 备份BST
     struct Node* n_node = &node;
@@ -139,7 +138,6 @@ var delete_node(struct Node &node, var data) {
         next_node = n_node->rightChild;
         state = true;
     }
-    
     // 删除节点
     // 被删除节点恰好是叶节点
     if(state && !next_node->leftChild && !next_node->rightChild){
@@ -148,6 +146,7 @@ var delete_node(struct Node &node, var data) {
         node = *bup_node;
         return bup;
     }
+    // 完成删除
     if(state){
         struct Node* bit_tree = nullptr;
         cp ? bit_tree = n_node->leftChild : bit_tree = n_node->rightChild ;
@@ -157,8 +156,6 @@ var delete_node(struct Node &node, var data) {
         node = *bup_node;
         return bup;
     }
-    // 待删除节点在右部
-    
     return bup;
 }
 
